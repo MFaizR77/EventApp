@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\EventRegistrationConfirmed;
 
 class EventRegistrationController extends Controller
 {
@@ -37,6 +39,10 @@ class EventRegistrationController extends Controller
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        // Send confirmation email
+        $user = Auth::user();
+        Mail::to($user->email)->send(new EventRegistrationConfirmed($user, $event));
 
         return redirect()->route('events.show', $event->id)->with('success', 'Pendaftaran event berhasil!');
     }
