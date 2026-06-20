@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
 
         // Seed Regular User
         User::create([
-            'name' => 'Faiz Ramdhani',
-            'email' => 'fizramdhh777@gmail.com',
+            'name' => 'User1 EventApp',
+            'email' => 'user@eventapp.com',
             'password' => Hash::make('password'),
             'role' => 'user',
         ]);

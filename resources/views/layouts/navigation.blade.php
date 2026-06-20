@@ -21,6 +21,11 @@
                     <x-nav-link :href="route('events.index')" :active="request()->routeIs('events.index')">
                         {{ __('Daftar Event') }}
                     </x-nav-link>
+                    @if(auth()->check() && auth()->user()->role === 'admin')
+                        <x-nav-link :href="route('admin.events.index')" :active="request()->routeIs('admin.events.*')">
+                            {{ __('Kelola Event (Admin)') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -89,6 +94,11 @@
             <x-responsive-nav-link :href="route('events.index')" :active="request()->routeIs('events.index')">
                 {{ __('Daftar Event') }}
             </x-responsive-nav-link>
+            @if(auth()->check() && auth()->user()->role === 'admin')
+                <x-responsive-nav-link :href="route('admin.events.index')" :active="request()->routeIs('admin.events.*')">
+                    {{ __('Kelola Event (Admin)') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
