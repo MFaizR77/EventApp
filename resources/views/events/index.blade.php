@@ -41,7 +41,7 @@
 
                             <div class="px-6 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
                                 <span class="text-xs text-gray-400">Pendaftaran dibuka</span>
-                                <a href="#" class="inline-flex items-center px-3 py-1.5 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring ring-indigo-300 disabled:opacity-25 transition ease-in-out duration-150">
+                                <a href="{{ route('events.show', $event->id) }}" class="inline-flex items-center px-3 py-1.5 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:ring ring-indigo-300 disabled:opacity-25 transition ease-in-out duration-150">
                                     Lihat Detail
                                 </a>
                             </div>
