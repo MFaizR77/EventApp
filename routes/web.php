@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     if (auth()->user()->role === 'admin') {
@@ -14,9 +14,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/events', function () {
+    $events = \App\Models\Event::orderBy('event_date', 'asc')->get();
+    return view('events.index', compact('events'));
+})->name('events.index');
+
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
+        $events = \App\Models\Event::orderBy('event_date', 'asc')->get();
+        return view('admin.dashboard', compact('events'));
     })->name('admin.dashboard');
 });
 
