@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventRegistrationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminEventController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,9 +19,10 @@ Route::post('/events/{event}/register', [EventRegistrationController::class, 're
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', function () {
-        $events = \App\Models\Event::orderBy('event_date', 'asc')->get();
-        return view('admin.dashboard', compact('events'));
+        return redirect()->route('admin.events.index');
     })->name('admin.dashboard');
+
+    Route::resource('/admin/events', AdminEventController::class)->names('admin.events');
 });
 
 Route::middleware('auth')->group(function () {
