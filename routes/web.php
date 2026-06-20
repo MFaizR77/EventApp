@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventRegistrationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,9 +18,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
-Route::post('/events/{event}/register', function () {
-    return 'Pendaftaran berhasil!';
-})->middleware('auth')->name('events.register');
+Route::post('/events/{event}/register', [EventRegistrationController::class, 'register'])->middleware('auth')->name('events.register');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', function () {
